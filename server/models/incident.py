@@ -1,0 +1,14 @@
+from . import db
+
+class Incident(db.Model):
+    __tablename__ = 'incidents'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(150), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    status = db.Column(db.String(50), default='under investigation')  # status enum
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+    media = db.relationship('Media', back_populates='incident', lazy=True)
