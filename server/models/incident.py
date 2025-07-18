@@ -12,7 +12,7 @@ class Incident(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     user = db.relationship('User', back_populates='incidents')
-    media = db.relationship('Media', back_populates='incident', lazy=True)
+
 
     def to_dict(self):
         return{
