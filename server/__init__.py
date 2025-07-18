@@ -7,6 +7,8 @@ from .models import db
 
 
 from .routes.user_routes import users_bp
+from .routes.media_routes import media_bp
+from .routes.incident_routes import incidents_bp
 
 
 def create_app():
@@ -22,8 +24,8 @@ def create_app():
 
 
     app.register_blueprint(users_bp)
-    # app.register_blueprint(incidents_bp)
-    # app.register_blueprint(media_bp)
+    app.register_blueprint(incidents_bp)
+    app.register_blueprint(media_bp)
 
 
 
