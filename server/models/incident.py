@@ -10,5 +10,6 @@ class Incident(db.Model):
     longitude = db.Column(db.Float)
     status = db.Column(db.String(50), default='under investigation')  # status enum
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    reporter = db.relationship("User", back_populates="incidents")
 
-    media = db.relationship('Media', back_populates='incident', lazy=True)
+    
