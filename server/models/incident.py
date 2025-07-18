@@ -8,8 +8,10 @@ class Incident(db.Model):
     description = db.Column(db.Text, nullable=False)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
-    status = db.Column(db.String(50), default='under investigation')  # status enum
+    status = db.Column(db.String(50), default='under investigation')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    reporter = db.relationship("User", back_populates="incidents")
 
+    user = db.relationship('User', back_populates='incidents')  
     
+
+
