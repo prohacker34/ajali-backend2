@@ -12,7 +12,7 @@ from .routes.user_routes import users_bp
 def create_app():
     app = Flask(__name__)
     app.config.from_object("config.Config")
-
+    print("🔥 Connected to:", app.config["SQLALCHEMY_DATABASE_URI"])
 
     db.init_app(app)
     Migrate(app, db)
@@ -22,9 +22,9 @@ def create_app():
 
 
     app.register_blueprint(users_bp)
-    app.register_blueprint(incidents_bp)
-    app.register_blueprint(media_bp)
+    # app.register_blueprint(incidents_bp)
+    # app.register_blueprint(media_bp)
 
-   
+
 
     return app
