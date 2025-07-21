@@ -4,12 +4,13 @@ class Media(db.Model):
     __tablename__ = 'media'
 
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(10), nullable=False)  
+    type = db.Column(db.String(10), nullable=False)
     url = db.Column(db.String, nullable=False)
 
     incident_id = db.Column(db.Integer, db.ForeignKey('incidents.id'), nullable=False)
 
     incident = db.relationship('Incident', back_populates='media')
+<<<<<<< HEAD
     
     def to_dict(self):
         return {
@@ -18,3 +19,11 @@ class Media(db.Model):
             "url": self.url,
             "incident_id": self.incident_id
         }
+=======
+
+    def to_dict(self):
+        return{ "id":self.id,
+                 "type":self.type,
+                 "url":self.url
+                }
+>>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9

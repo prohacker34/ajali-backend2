@@ -9,7 +9,12 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(512), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
+<<<<<<< HEAD
     incidents = db.relationship('Incident', back_populates='reporter')
+=======
+
+    incidents = db.relationship('Incident', back_populates='reporter', cascade='all, delete-orphan')
+>>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

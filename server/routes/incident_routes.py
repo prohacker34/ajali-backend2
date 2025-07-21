@@ -45,4 +45,10 @@ def update_incident(id):
         incident.url=data['url']
 
     db.session.commit()
+<<<<<<< HEAD
     return jsonify(incident.to_dict()),200
+=======
+    return jsonify(incident.to_dict()),200
+
+
+>>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9
