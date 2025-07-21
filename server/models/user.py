@@ -8,6 +8,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(512), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
 
     incidents = db.relationship('Incident', back_populates='reporter', cascade='all, delete-orphan')
 

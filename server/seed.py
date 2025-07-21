@@ -70,6 +70,14 @@ def seed():
         db.session.add_all([media1, media2])
         db.session.commit()
 
+        print("seeding admin ....")
+
+        admin = User(
+            
+        )
+        db.session.add(admin)
+        db.session.commit()
+
         print("Seeding complete!")
 
 if __name__ == "__main__":
