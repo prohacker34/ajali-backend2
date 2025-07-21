@@ -18,8 +18,4 @@ def get_all_users():
 
     users = User.query.all()
     result = [{"id": u.id, "username": u.username, "email": u.email} for u in users]
-<<<<<<< HEAD
     return jsonify(result), 200
-=======
-    return jsonify(result), 200
->>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9

@@ -10,20 +10,9 @@ class Media(db.Model):
     incident_id = db.Column(db.Integer, db.ForeignKey('incidents.id'), nullable=False)
 
     incident = db.relationship('Incident', back_populates='media')
-<<<<<<< HEAD
-    
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "type": self.type,
-            "url": self.url,
-            "incident_id": self.incident_id
-        }
-=======
 
     def to_dict(self):
         return{ "id":self.id,
                  "type":self.type,
                  "url":self.url
                 }
->>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9

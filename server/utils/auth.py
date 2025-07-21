@@ -9,8 +9,4 @@ def hash_password(password):
     return generate_password_hash(password)
 
 def verify_password(password, hashed):
-<<<<<<< HEAD
     return check_password_hash(hashed, password)
-=======
-    return check_password_hash(hashed, password)
->>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9

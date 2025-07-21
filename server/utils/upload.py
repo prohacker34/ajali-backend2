@@ -35,8 +35,4 @@ def upload_file():
             "uploaded_by": current_user_id
         }), 200
 
-<<<<<<< HEAD
     return jsonify({"msg": "Invalid file type"}), 400
-=======
-    return jsonify({"msg": "Invalid file type"}), 400
->>>>>>> 6a121d7176d8a01570d8a1c72737c5db31bed2f9
