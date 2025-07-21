@@ -14,6 +14,7 @@ from .routes.user_routes import users_bp
 from .routes.media_routes import media_bp
 from .routes.incident_routes import incidents_bp
 from .routes.admin_routes import admin_bp
+from .utils.upload import upload_bp
 
 
 
@@ -40,6 +41,7 @@ def create_app():
     app.register_blueprint(incidents_bp)
     app.register_blueprint(media_bp)
     app.register_blueprint(admin_bp)
+    app.register_blueprint(upload_bp)
 
 
 
