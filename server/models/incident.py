@@ -13,7 +13,18 @@ class Incident(db.Model):
 
     media = db.relationship("Media", back_populates="incident", cascade="all, delete-orphan")
 
-    user = db.relationship('User', back_populates='incidents')  
+    reporter = db.relationship('User', back_populates='incidents')  
     
-
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "status": self.status,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "reporter_id": self.reporter_id,
+            "reporter_username": self.reporter.username if self.reporter else None,
+            "media": [m.to_dict() for m in self.media]
+        }
 

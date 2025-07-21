@@ -12,6 +12,10 @@ jwt = JWTManager()
 
 # Import all blueprints
 from .routes.user_routes import users_bp
+from .routes.incident_routes import incidents_bp
+from .routes.media_routes import media_bp
+from .routes.auth_routes import auth_bp
+from .routes.admin_routes import admin_bp
 
 
 def create_app():
@@ -35,8 +39,10 @@ def create_app():
 
     # Register Blueprints
     app.register_blueprint(users_bp)
-    # app.register_blueprint(incidents_bp)
-    # app.register_blueprint(media_bp)
+    app.register_blueprint(incidents_bp)
+    app.register_blueprint(media_bp)
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(admin_bp)
 
 
 
