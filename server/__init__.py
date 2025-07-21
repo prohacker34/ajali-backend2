@@ -7,6 +7,7 @@ import os
 
 from .models import db
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 jwt = JWTManager()
 
@@ -33,6 +34,7 @@ def create_app():
     db.init_app(app)
     Migrate(app, db)
     jwt.init_app(app)
+    CORS(app)
 
 
     from .models import user, incident, media
