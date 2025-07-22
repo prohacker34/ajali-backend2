@@ -45,12 +45,18 @@ def seed():
         incident1 = Incident(
             title='Broken streetlight',
             description='Streetlight on 5th Ave is not working',
-            user=sam
+            user=sam,
+            laitude= 679045,
+            longitude= 657902,
+            status= 'pending'
         )
         incident2 = Incident(
             title='Pothole on Main St',
             description='Large pothole causing traffic issues',
-            user=jessica
+            user=jessica,
+            latitude= 234567,
+            longitude= 3465879,
+            status= 'approved'
         )
         db.session.add_all([incident1, incident2])
         db.session.commit()
