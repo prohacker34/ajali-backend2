@@ -10,6 +10,7 @@ from server.models import db
 from models.user import User
 from models.incident import Incident
 from models.media import Media
+from werkzeug.security import generate_password_hash
 
 def seed():
     with app.app_context():
@@ -45,15 +46,15 @@ def seed():
         incident1 = Incident(
             title='Broken streetlight',
             description='Streetlight on 5th Ave is not working',
-            user=sam,
-            laitude= 679045,
+            reporter=sam,
+            latitude= 679045,
             longitude= 657902,
             status= 'pending'
         )
         incident2 = Incident(
             title='Pothole on Main St',
             description='Large pothole causing traffic issues',
-            user=jessica,
+            reporter=jessica,
             latitude= 234567,
             longitude= 3465879,
             status= 'approved'
@@ -79,7 +80,11 @@ def seed():
         print("seeding admin ....")
 
         admin = User(
-            
+            username="admin",
+            email="admin@gmail.com",
+            password_hash=generate_password_hash("admin123"),
+            is_admin=True
+
         )
         db.session.add(admin)
         db.session.commit()
