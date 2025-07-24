@@ -46,3 +46,22 @@ def update_incident_status(incident_id):
         "title": incident.title,
         "status": incident.status
     }}), 200
+
+@admin_bp.route('/incidents/<int:incident_id>', methods=['DELETE'])
+@jwt_required()
+def delete_incident(incident_id):
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+
+    if not user or not user.is_admin:
+        return jsonify({"error": "Admins only"}), 403
+
+    incident = Incident.query.get(incident_id)
+    if not incident:
+        return jsonify({"error": "Incident not found"}), 404
+
+    db.session.delete(incident)
+    db.session.commit()
+
+    return jsonify({"message": f"Incident with ID {incident_id} has been deleted"}), 200
+
