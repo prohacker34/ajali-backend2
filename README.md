@@ -89,17 +89,17 @@ Endpoint	Method	Description
  You can make the following request:
 1.    GET  http://127.0.0.1:5000/users to get all users
 2. To register POST http://127.0.0.1:5000/auth/register in the body tag use JSON format to write the email,password, and username of the user
-2. login POST http://127.0.0.1:5000/auth/login to login registered user go to the body tag and write the email and password of the user in JSON format
-3. To acces admin routes you must login(step 2), copy the access token and got to the headers tab under the tab there are two dashes one short and another long, this is what to write Authorization for the short one and Bearer access token.
+3. login POST http://127.0.0.1:5000/auth/login to login registered user go to the body tag and write the email and password of the user in JSON format
+4. To acces admin routes you must login(step 2), copy the access token and got to the headers tab under the tab there are two dashes one short and another long, this is what to write Authorization for the short one and Bearer access token.
 - Make sure you leave space between the word Bearer and the token.
 
 - Make sure that the word Bearer starts with capital "B".
 
 - Your answer should look something like this:
          Authorization    Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-4. Once you are able to access admin routes the admin will be able to update status
+5. Once you are able to access admin routes the admin will be able to update status
 
-## Authors
+## Author
 - Habert Otieno.
 - Munge Kariuki.
 ## License
