@@ -11,7 +11,7 @@ from flask_cors import CORS
 
 jwt = JWTManager()
 
-# Import all blueprints
+
 from .routes.user_routes import users_bp
 from .routes.incident_routes import incidents_bp
 from .routes.media_routes import media_bp
@@ -21,8 +21,8 @@ from .routes.admin_routes import admin_bp
 
 def create_app():
     app = Flask(__name__)
-    
-    # Load config (from config.py)
+
+
     app.config.from_object("config.Config")
     app.config["JWT_SECRET_KEY"]=os.getenv("JWT_SECRET_KEY")
     app.config["JWT_TOKEN_LOCATION"]=["headers"]
@@ -30,7 +30,7 @@ def create_app():
     print("🔥 Connected to:", app.config["SQLALCHEMY_DATABASE_URI"])
 
 
-    # Initialize extensions
+
     db.init_app(app)
     Migrate(app, db)
     jwt.init_app(app)
@@ -39,7 +39,6 @@ def create_app():
 
     from .models import user, incident, media
 
-    # Register Blueprints
     app.register_blueprint(users_bp)
     app.register_blueprint(incidents_bp)
     app.register_blueprint(media_bp)

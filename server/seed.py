@@ -79,11 +79,13 @@ def seed():
 
         print("seeding admin ....")
 
+
         admin= User(
             username= "admin",
             email= "admin@gmail.com",
             password_hash=generate_password_hash('admin123'),
             is_admin= True
+
         )
         db.session.add(admin)
         db.session.commit()
