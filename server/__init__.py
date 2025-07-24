@@ -8,6 +8,8 @@ import os
 from .models import db
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from server.routes.base_routes import base  # 👈 import the new blueprint
+
 
 jwt = JWTManager()
 
@@ -44,6 +46,7 @@ def create_app():
     app.register_blueprint(media_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(admin_bp)
+    app.register_blueprint(base)
 
 
 
