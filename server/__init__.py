@@ -8,7 +8,7 @@ import os
 from .models import db
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-from server.routes.base_routes import base  # 👈 import the new blueprint
+from server.routes.base_routes import base
 
 
 jwt = JWTManager()
@@ -23,6 +23,7 @@ from .routes.admin_routes import admin_bp
 
 def create_app():
     app = Flask(__name__)
+    app.url_map.strict_slashes = False
 
 
     app.config.from_object("config.Config")
@@ -36,7 +37,7 @@ def create_app():
     db.init_app(app)
     Migrate(app, db)
     jwt.init_app(app)
-    CORS(app)
+    CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 
 
     from .models import user, incident, media

@@ -17,17 +17,26 @@ def get_user(id):
 @incidents_bp.route('/', methods=['POST'])
 def create_incident():
     data = request.get_json()
+    print("📥 Received data:", data) 
+
+    required_fields = ['title', 'description', 'latitude', 'longitude', 'status']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({"error": f"Missing required field: {field}"}), 400
 
     incident = Incident(
-        title=data['title'],
-        description=data['description'],
-        latitude=data['latitude'],
-        longitude=data['longitude'],
-        status=data['status'],
+        title=data.get('title'),
+        description=data.get('description'),
+        latitude=data.get('latitude'),
+        longitude=data.get('longitude'),
+        status=data.get('status'),
     )
 
     db.session.add(incident)
     db.session.commit()
+
+    return jsonify(incident.to_dict()), 201
+
 
     return jsonify(incident.to_dict()),201
 
