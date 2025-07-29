@@ -1,6 +1,15 @@
 from flask import Blueprint, request, jsonify
+from werkzeug.utils import secure_filename
+from flask import current_app
+
+import os
 from server.models import db
 from server.models.incident import Incident
+from server.models.media import Media
+
+
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 incidents_bp=Blueprint('incidents_bp', __name__, url_prefix='/incidents')
 
@@ -16,29 +25,55 @@ def get_user(id):
 
 @incidents_bp.route('/', methods=['POST'])
 def create_incident():
-    data = request.get_json()
-    print("📥 Received data:", data) 
 
-    required_fields = ['title', 'description', 'latitude', 'longitude', 'status']
-    for field in required_fields:
-        if field not in data:
-            return jsonify({"error": f"Missing required field: {field}"}), 400
+    title = request.form.get('title')
+    description = request.form.get('description')
+    latitude = request.form.get('latitude')
+    longitude = request.form.get('longitude')
+    status = request.form.get('status')
+
+
+    if not all([title, description, latitude, longitude, status]):
+        return jsonify({"error": "Missing required fields"}), 400
+
 
     incident = Incident(
-        title=data.get('title'),
-        description=data.get('description'),
-        latitude=data.get('latitude'),
-        longitude=data.get('longitude'),
-        status=data.get('status'),
+        title=title,
+        description=description,
+        latitude=float(latitude),
+        longitude=float(longitude),
+        status=status,
     )
-
     db.session.add(incident)
+    db.session.commit()
+
+
+    files = request.files.getlist('media')
+    for file in files:
+        if file.filename == "":
+            continue
+
+        filename = secure_filename(file.filename)
+        upload_folder = current_app.config['UPLOAD_FOLDER']
+        os.makedirs(upload_folder, exist_ok=True)
+        filepath = os.path.join(upload_folder, filename)
+        file.save(filepath)
+
+        media_type = "video" if "video" in file.content_type else "image"
+
+        media = Media(
+            type=media_type,
+            url=filename,
+            incident_id=incident.id
+        )
+        db.session.add(media)
+
     db.session.commit()
 
     return jsonify(incident.to_dict()), 201
 
 
-    return jsonify(incident.to_dict()),201
+
 
 @incidents_bp.route('/<int:id>', methods=['PATCH'])
 def update_incident(id):

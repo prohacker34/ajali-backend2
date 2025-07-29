@@ -12,8 +12,8 @@ class Media(db.Model):
     incident = db.relationship('Incident', back_populates='media')
 
     def to_dict(self):
-        return{  
-            
+        return{
+
           "id":self.id,
           "type":self.type,
           "url":self.url
