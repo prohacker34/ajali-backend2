@@ -19,7 +19,7 @@ def get_all_users():
     users = User.query.all()
     result = [{"id": u.id, "username": u.username, "email": u.email} for u in users]
     return jsonify(result), 200
-@admin_bp.route('/incidents/<int:incident_id>/status', methods=['PATCH'])
+@admin_bp.route('/incidents/<int:incident_id>', methods=['PATCH'])
 @jwt_required()
 def update_incident_status(incident_id):
     user_id = get_jwt_identity()

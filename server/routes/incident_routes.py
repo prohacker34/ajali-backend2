@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 from flask import current_app
+import string
 
 import os
 from server.models import db
@@ -40,8 +41,8 @@ def create_incident():
     incident = Incident(
         title=title,
         description=description,
-        latitude=float(latitude),
-        longitude=float(longitude),
+        latitude=str(latitude),
+        longitude=str(longitude),
         status=status,
     )
     db.session.add(incident)
