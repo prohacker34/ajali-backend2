@@ -44,7 +44,7 @@ def seed():
         print("Seeding incidents...")
 
         incident1 = Incident(
-            title='Broken streetlight',
+            title='Head on collision',
             description='Streetlight on 5th Ave is not working',
             reporter=sam,
             latitude= 679045,
