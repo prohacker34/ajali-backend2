@@ -51,3 +51,4 @@ def create_app():
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
     return app
+app=create_app()
