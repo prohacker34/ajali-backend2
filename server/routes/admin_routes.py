@@ -19,6 +19,13 @@ def get_all_users():
     users = User.query.all()
     result = [{"id": u.id, "username": u.username, "email": u.email} for u in users]
     return jsonify(result), 200
+
+@admin_bp.route('/incidents', methods=['GET'])
+@jwt_required()
+def get_incidents():
+    incidents = Incident.query.all()
+    return jsonify([incident.to_dict() for incident in incidents])
+
 @admin_bp.route('/incidents/<int:incident_id>', methods=['PATCH'])
 @jwt_required()
 def update_incident_status(incident_id):
