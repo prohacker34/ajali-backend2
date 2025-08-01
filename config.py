@@ -1,6 +1,7 @@
 import os
 print("Connected to DB:", os.getenv("DATABASE_URL"))
 
+
 class Config:
 
 

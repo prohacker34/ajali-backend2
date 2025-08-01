@@ -35,7 +35,7 @@ def create_app():
     Migrate(app, db)
     jwt.init_app(app)
 
-    CORS(app, supports_credentials=True, origins=["http://localhost:5173","https://ajali-frontend2.vercel.app/"])
+    CORS(app, supports_credentials=True,   resources={r"/*": {"origins": ["https://ajali-frontend2.vercel.app"]}},)
 
     from .models import user, incident, media
 

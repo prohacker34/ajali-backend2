@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@auth_bp.route('/register', methods=['POST'])
+@auth_bp.route('/register', methods=['POST','OPTIONS'])
 def register():
     data = request.get_json()
     username = data.get("username")
